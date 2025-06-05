@@ -67,8 +67,8 @@ const ProgressSteps = ({ currentStep }) => {
   };
 
   return (
-    <div className="bg-transparent py-3 w-full max-w-4xl mx-auto">
-      <div className="relative w-full">
+    <div className="bg-transparent py-3 w-full max-w-4xl mx-auto px-2 sm:px-4">
+      <div className="relative w-full overflow-x-auto pb-2">
         {/* Base connector line (gray) */}
         <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-gray-700 -translate-y-1/2 z-0" aria-hidden="true"></div>
         
@@ -78,7 +78,7 @@ const ProgressSteps = ({ currentStep }) => {
              aria-hidden="true"></div>
         
         {/* Steps container with absolute positioning for first and last items */}
-        <div className="flex justify-between relative">
+        <div className="flex justify-between relative min-w-[500px] sm:min-w-0">
           {steps.map((step, index) => {
             // Colors to match the site theme with green for completed steps
             const isActive = step.id === activeStep; // Currently active step
@@ -99,7 +99,7 @@ const ProgressSteps = ({ currentStep }) => {
                 {isClickable ? (
                   <button 
                     onClick={() => handleStepClick(step.id)}
-                    className={`flex items-center justify-center w-8 h-8 rounded-full ${bgColor} mb-1 cursor-pointer hover:brightness-110 transition-all focus:ring-2 focus:ring-offset-2 focus:ring-emerald-400 focus:outline-none`}
+                    className={`flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 rounded-full ${bgColor} mb-1 cursor-pointer hover:brightness-110 transition-all focus:ring-2 focus:ring-offset-2 focus:ring-emerald-400 focus:outline-none`}
                     aria-current={isActive ? "step" : undefined}
                     aria-label={`Go to ${step.name} step`}
                   >
@@ -109,7 +109,7 @@ const ProgressSteps = ({ currentStep }) => {
                   </button>
                 ) : (
                   <div 
-                    className={`flex items-center justify-center w-8 h-8 rounded-full ${bgColor} mb-1`}
+                    className={`flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 rounded-full ${bgColor} mb-1`}
                     aria-current={isActive ? "step" : undefined}
                   >
                     <span className={iconColor}>
@@ -117,7 +117,7 @@ const ProgressSteps = ({ currentStep }) => {
                     </span>
                   </div>
                 )}
-                <span className={`text-sm font-semibold ${textColor} whitespace-nowrap`}>
+                <span className={`text-xs sm:text-sm font-semibold ${textColor} whitespace-nowrap`}>
                   {step.name}
                 </span>
               </div>

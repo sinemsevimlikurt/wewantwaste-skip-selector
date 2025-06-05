@@ -55,7 +55,7 @@ const SkipSizeSelection = () => {
       <section 
         aria-live="polite" 
         aria-busy="true"
-        className="flex items-center justify-center min-h-[400px]"
+        className="flex items-center justify-center min-h-[300px] sm:min-h-[350px] md:min-h-[400px] px-4"
       >
         <div className="flex flex-col items-center" role="status">
           <div 
@@ -72,7 +72,7 @@ const SkipSizeSelection = () => {
   if (error) {
     return (
       <section 
-        className="bg-red-50 border border-red-200 rounded-lg p-6 text-center"
+        className="bg-red-50 border border-red-200 rounded-lg p-4 sm:p-6 text-center max-w-lg mx-auto"
         aria-live="assertive"
         role="alert"
       >
@@ -100,14 +100,14 @@ const SkipSizeSelection = () => {
   }
 
   return (
-    <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 overflow-x-hidden">
-      <header>
-        <h1 className="text-3xl font-bold text-center mb-2 animate-fadeIn opacity-0">Choose Your Skip Size</h1>
-        <p className="text-gray-600 text-center mb-8 animate-slideUp opacity-0" style={{animationDelay: '0.5s'}}>Select the skip size that best suits your needs</p>
+    <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12 overflow-x-hidden">
+      <header className="mb-6 sm:mb-8 md:mb-10">
+        <h1 className="text-2xl sm:text-3xl font-bold text-center mb-2 animate-fadeIn opacity-0">Choose Your Skip Size</h1>
+        <p className="text-sm sm:text-base text-gray-600 text-center mb-4 sm:mb-6 animate-slideUp opacity-0" style={{animationDelay: '0.5s'}}>Select the skip size that best suits your needs</p>
       </header>
       
       <section 
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-6 md:gap-8"
         aria-labelledby="skip-options-heading"
         role="region"
       >
@@ -115,37 +115,37 @@ const SkipSizeSelection = () => {
         {skips.map((skip) => (
           <article 
             key={skip.id} 
-            className="border border-gray-200 rounded-lg overflow-hidden shadow-md bg-white hover:shadow-lg hover:border-green-500 transition-all duration-300"
+            className="border border-gray-200 rounded-lg overflow-hidden shadow-md bg-white hover:shadow-lg hover:border-green-500 transition-all duration-300 flex flex-col h-full"
           >
             <div className="relative">
               <img 
                 src={skip.image_url || `https://placehold.co/600x400/FFD700/333?text=${skip.size}+Yard+Skip`} 
                 alt={`${skip.size} Yard Skip - Visual representation`} 
-                className="w-full h-48 object-cover"
+                className="w-full h-36 sm:h-40 md:h-48 object-cover"
               />
               <div className="absolute top-4 right-4 bg-emerald-600 text-white px-3 py-1 rounded-full text-sm font-medium" aria-hidden="true">
                 {skip.size} Yards
               </div>
             </div>
             
-            <div className="p-5">
+            <div className="p-4 sm:p-5 flex-grow flex flex-col">
               <h3 className="text-xl font-bold mb-1">{skip.size} Yard Skip</h3>
               <p className="text-gray-600 mb-4">{skip.hire_period_days} day hire period</p>
               <p className="text-sm text-gray-500 mb-2">{skip.description}</p>
-              <dl className="flex justify-between items-center mb-4">
+              <dl className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-2 sm:gap-4">
                 <div>
                   <dt className="text-xs text-gray-500">Dimensions</dt>
-                  <dd className="text-sm font-medium">{skip.dimensions}</dd>
+                  <dd className="text-xs sm:text-sm font-medium">{skip.dimensions}</dd>
                 </div>
                 <div>
                   <dt className="text-xs text-gray-500">Capacity</dt>
-                  <dd className="text-sm font-medium">{skip.capacity}</dd>
+                  <dd className="text-xs sm:text-sm font-medium">{skip.capacity}</dd>
                 </div>
               </dl>
-              <p className="text-2xl font-bold text-emerald-600 mb-4" aria-label={`Price: ${formatPrice(skip.price)}`}>{formatPrice(skip.price)}</p>
+              <p className="text-xl sm:text-2xl font-bold text-emerald-600 mb-4 mt-auto" aria-label={`Price: ${formatPrice(skip.price)}`}>{formatPrice(skip.price)}</p>
               
               <button 
-                className="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-3 px-4 rounded-md flex items-center justify-center transition-all duration-300 transform hover:scale-105 active:scale-95 hover:shadow-lg group relative overflow-hidden focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+                className="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-2 sm:py-3 px-3 sm:px-4 text-sm sm:text-base rounded-md flex items-center justify-center transition-all duration-300 transform hover:scale-105 active:scale-95 hover:shadow-lg group relative overflow-hidden focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
                 aria-label={`Select ${skip.size} yard skip for ${formatPrice(skip.price)}`}
               >
                 <span className="relative z-10 group-hover:translate-x-1 transition-transform duration-300">Select This Skip</span>
