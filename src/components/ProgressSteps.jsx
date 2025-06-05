@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const ProgressSteps = ({ currentStep }) => {
   const [activeStep, setActiveStep] = useState(currentStep);
@@ -74,7 +74,7 @@ const ProgressSteps = ({ currentStep }) => {
         
         {/* Green connector lines for completed steps */}
         <div className="absolute top-1/2 left-0 h-0.5 bg-emerald-600 -translate-y-1/2 z-0" 
-             style={{ width: `${((Math.min(currentStep, 3) - 1) / (steps.length - 1)) * 100}%` }} 
+             style={{ width: `${((Math.min(currentStep, steps.length) - 1) / (steps.length - 1)) * 100}%` }} 
              aria-hidden="true"></div>
         
         {/* Steps container with absolute positioning for first and last items */}
@@ -92,12 +92,7 @@ const ProgressSteps = ({ currentStep }) => {
             const textColor = isCompleted || isActive ? 'text-green-600' : 'text-gray-300';
             
             // Special positioning classes for first and last items
-            let positionClass = "";
-            if (isFirst) {
-              positionClass = "ml-0";
-            } else if (isLast) {
-              positionClass = "mr-0";
-            }
+            const positionClass = isFirst ? "ml-0" : isLast ? "mr-0" : "";
             
             return (
               <div key={step.id} className={`flex flex-col items-center z-10 ${positionClass}`}>

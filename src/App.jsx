@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import './App.css'
 import SkipSizeSelection from './components/SkipSizeSelection'
 import ProgressSteps from './components/ProgressSteps'
@@ -41,7 +40,7 @@ function App() {
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             <div>
-              <h3 className="text-xl font-bold mb-4">EcoSkip</h3>
+              <h3 className="text-xl font-bold mb-4">WeWantWaste</h3>
               <p className="text-gray-400">Sustainable waste management solutions for homes and businesses.</p>
             </div>
             <div>
@@ -63,7 +62,7 @@ function App() {
             </div>
           </div>
           <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-            <p>© {new Date().getFullYear()} EcoSkip. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} WeWantWaste. All rights reserved.</p>
           </div>
         </div>
       </footer>

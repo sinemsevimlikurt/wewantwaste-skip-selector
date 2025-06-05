@@ -18,43 +18,35 @@ const SkipSizeSelection = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchSkips = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-        
-        const url = `${API_URL}?postcode=${encodeURIComponent(DEFAULT_POSTCODE)}&area=${encodeURIComponent(DEFAULT_AREA)}`;
-        console.log(`Fetching skip data from: ${url}`);
-        
-        const response = await fetch(url);
-        
-        if (!response.ok) {
-          throw new Error(`API returned error status: ${response.status} ${response.statusText}`);
-        }
-        
-        const data = await response.json();
-        console.log('Skip data received:', data);
-        
-        if (!Array.isArray(data)) {
-          throw new Error('API did not return an array of skips as expected');
-        }
-        
-        setSkips(data);
-      } catch (err) {
-        console.error('Error fetching skip data:', err);
-        setError(`Failed to fetch skip data: ${err.message}`);
-        
-        // If we have no skips data at all, we could potentially show an error
-        // but for now we'll keep any existing data in the state
-        if (skips.length === 0) {
-          setError('Unable to load skip options. Please try again later.');
-        }
-      } finally {
-        setLoading(false);
+  const fetchSkips = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      
+      const url = `${API_URL}?postcode=${encodeURIComponent(DEFAULT_POSTCODE)}&area=${encodeURIComponent(DEFAULT_AREA)}`;
+      
+      const response = await fetch(url);
+      
+      if (!response.ok) {
+        throw new Error(`API returned error status: ${response.status} ${response.statusText}`);
       }
-    };
+      
+      const data = await response.json();
+      
+      if (!Array.isArray(data)) {
+        throw new Error('API did not return an array of skips as expected');
+      }
+      
+      setSkips(data);
+    } catch (err) {
+      console.error('Error fetching skip data:', err);
+      setError('Unable to load skip options. Please try again later.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
     fetchSkips();
   }, []); // Only fetch once on component mount
 
@@ -67,7 +59,7 @@ const SkipSizeSelection = () => {
       >
         <div className="flex flex-col items-center" role="status">
           <div 
-            className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"
+            className="w-12 h-12 border-4 border-emerald-600 border-t-transparent rounded-full animate-spin"
             aria-hidden="true"
           ></div>
           <p className="mt-4 text-gray-700">Loading skip options...</p>
@@ -108,7 +100,7 @@ const SkipSizeSelection = () => {
   }
 
   return (
-    <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+    <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 overflow-x-hidden">
       <header>
         <h1 className="text-3xl font-bold text-center mb-2 animate-fadeIn opacity-0">Choose Your Skip Size</h1>
         <p className="text-gray-600 text-center mb-8 animate-slideUp opacity-0" style={{animationDelay: '0.5s'}}>Select the skip size that best suits your needs</p>
@@ -117,6 +109,7 @@ const SkipSizeSelection = () => {
       <section 
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8"
         aria-labelledby="skip-options-heading"
+        role="region"
       >
         <h2 id="skip-options-heading" className="sr-only">Available Skip Options</h2>
         {skips.map((skip) => (
@@ -130,7 +123,7 @@ const SkipSizeSelection = () => {
                 alt={`${skip.size} Yard Skip - Visual representation`} 
                 className="w-full h-48 object-cover"
               />
-              <div className="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium" aria-hidden="true">
+              <div className="absolute top-4 right-4 bg-emerald-600 text-white px-3 py-1 rounded-full text-sm font-medium" aria-hidden="true">
                 {skip.size} Yards
               </div>
             </div>
@@ -149,10 +142,10 @@ const SkipSizeSelection = () => {
                   <dd className="text-sm font-medium">{skip.capacity}</dd>
                 </div>
               </dl>
-              <p className="text-2xl font-bold text-blue-600 mb-4" aria-label={`Price: ${formatPrice(skip.price)}`}>{formatPrice(skip.price)}</p>
+              <p className="text-2xl font-bold text-emerald-600 mb-4" aria-label={`Price: ${formatPrice(skip.price)}`}>{formatPrice(skip.price)}</p>
               
               <button 
-                className="w-full bg-blue-400 hover:bg-blue-500 text-white py-3 px-4 rounded-md flex items-center justify-center transition-all duration-300 transform hover:scale-105 active:scale-95 hover:shadow-lg group relative overflow-hidden focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                className="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-3 px-4 rounded-md flex items-center justify-center transition-all duration-300 transform hover:scale-105 active:scale-95 hover:shadow-lg group relative overflow-hidden focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
                 aria-label={`Select ${skip.size} yard skip for ${formatPrice(skip.price)}`}
               >
                 <span className="relative z-10 group-hover:translate-x-1 transition-transform duration-300">Select This Skip</span>
