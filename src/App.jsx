@@ -23,7 +23,7 @@ function App() {
       
       <main className="container mx-auto px-6 py-12">
         <div className="max-w-3xl mx-auto mb-12 text-center">
-          <h2 className="text-4xl font-extrabold mb-4 text-gray-800 dark:text-white">Find Your Perfect Skip</h2>
+          <h2 className="text-4xl font-extrabold mb-4 text-green-800 dark:text-green-600">Find Your Perfect Skip</h2>
           <p className="text-lg text-gray-600 dark:text-gray-300">Select the right size for your project and get it delivered to your doorstep.</p>
         </div>
         

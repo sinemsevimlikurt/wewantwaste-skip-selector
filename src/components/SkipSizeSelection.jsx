@@ -59,13 +59,13 @@ const SkipSizeSelection = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h2 className="text-3xl font-bold text-center mb-2">Choose Your Skip Size</h2>
-      <p className="text-gray-600 text-center mb-8">Select the skip size that best suits your needs</p>
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+      <h2 className="text-3xl font-bold text-center mb-2 animate-fadeIn opacity-0">Choose Your Skip Size</h2>
+      <p className="text-gray-600 text-center mb-8 animate-slideUp opacity-0" style={{animationDelay: '0.5s'}}>Select the skip size that best suits your needs</p>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
         {skips.map((skip) => (
-          <div key={skip.id} className="border border-gray-200 rounded-lg overflow-hidden shadow-md bg-white hover:shadow-lg transition-shadow">
+          <div key={skip.id} className="border border-gray-200 rounded-lg overflow-hidden shadow-md bg-white hover:shadow-lg hover:border-green-500 transition-all duration-300">
             <div className="relative">
               <img 
                 src={skip.image_url || `https://placehold.co/600x400/FFD700/333?text=${skip.size}+Yard+Skip`} 
@@ -83,12 +83,13 @@ const SkipSizeSelection = () => {
               <p className="text-2xl font-bold text-blue-600 mb-4">£{skip.price}</p>
               
               <button 
-                className="w-full bg-gray-800 hover:bg-gray-900 text-white py-3 px-4 rounded-md flex items-center justify-center transition-colors"
+                className="w-full bg-blue-400 hover:bg-blue-500 text-white py-3 px-4 rounded-md flex items-center justify-center transition-all duration-300 transform hover:scale-105 active:scale-95 hover:shadow-lg group relative overflow-hidden"
               >
-                <span>Select This Skip</span>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                <span className="relative z-10 group-hover:translate-x-1 transition-transform duration-300">Select This Skip</span>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2 relative z-10 group-hover:translate-x-1 transition-transform duration-300" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
                 </svg>
+                <span className="absolute inset-0 bg-green-600 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></span>
               </button>
             </div>
           </div>
