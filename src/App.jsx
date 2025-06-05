@@ -1,4 +1,7 @@
+import { useState } from 'react'
+import './App.css'
 import SkipSizeSelection from './components/SkipSizeSelection'
+import ProgressSteps from './components/ProgressSteps'
 
 function App() {
   return (
@@ -9,7 +12,7 @@ function App() {
             <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-emerald-600 dark:text-emerald-400" viewBox="0 0 20 20" fill="currentColor">
               <path fillRule="evenodd" d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm3.293 1.293a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 01-1.414-1.414L7.586 10 5.293 7.707a1 1 0 010-1.414zM11 12a1 1 0 100 2h3a1 1 0 100-2h-3z" clipRule="evenodd" />
             </svg>
-            <h1 className="text-2xl font-bold text-gray-800 dark:text-white">EcoSkip</h1>
+            <h1 className="text-2xl font-bold text-gray-800 dark:text-white">WeWantWaste</h1>
           </div>
           <nav>
             <ul className="flex gap-6">
@@ -27,12 +30,8 @@ function App() {
           <p className="text-lg text-gray-600 dark:text-gray-300">Select the right size for your project and get it delivered to your doorstep.</p>
         </div>
         
-        <div className="flex justify-center mb-12">
-          <div className="bg-white dark:bg-gray-800 rounded-full shadow-md p-1 flex gap-2 max-w-xl w-full">
-            <button className="flex-1 py-3 px-4 rounded-full bg-emerald-600 text-white font-medium">Skip Selection</button>
-            <button className="flex-1 py-3 px-4 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">Delivery Options</button>
-            <button className="flex-1 py-3 px-4 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">Payment</button>
-          </div>
+        <div className="mb-12 max-w-4xl mx-auto">
+          <ProgressSteps currentStep={3} />
         </div>
         
         <SkipSizeSelection />
